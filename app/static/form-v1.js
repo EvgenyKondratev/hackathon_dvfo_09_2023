@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                          
 
                             outputRight.innerHTML = `<h2>Улучшенное видео</h2><br> <video width="420"  controls >
-                            <source id="genericFileName" src="${data.filename}">
+                            <source id="genericFileName" src="${data.filename}" type="video/mp4">
                             Ваш браузер не поддерживает видео.
                           </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Мне понравилось! :)</button>` ;
                       
