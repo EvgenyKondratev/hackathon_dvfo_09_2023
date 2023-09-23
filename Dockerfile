@@ -3,12 +3,18 @@ FROM python:3.10
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y libgl1
+RUN apt-get update && apt-get install -y libgl1 ffmpeg
 
 RUN pip install --upgrade pip
 
 COPY requirements_nn.txt /tmp/requirements_nn.txt
 RUN pip install -r /tmp/requirements_nn.txt
+
+COPY requirements_gan.txt /tmp/requirements_gan.txt
+RUN pip install -r /tmp/requirements_gan.txt
+
+COPY requirements_internal.txt /tmp/requirements_internal.txt
+RUN pip install -r /tmp/requirements_internal.txt
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt

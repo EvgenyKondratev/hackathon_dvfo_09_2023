@@ -1,7 +1,8 @@
-﻿import uuid
+﻿import os
+import uuid
 import time
 import json
-from fastapi import FastAPI, status, Request, File, BackgroundTasks
+from fastapi import FastAPI, status, Request, File, BackgroundTasks, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -12,12 +13,14 @@ from pydantic import BaseModel
 
 
 class Upload(BaseModel):
+    path: str
     filename: str
 
 
 class Status(BaseModel):
     percent: int
-    link: str | None = None
+    path: str | None = None
+    filename: str | None = None
 
 
 app = FastAPI()
@@ -38,18 +41,45 @@ async def index(request: Request):
 @app.post("/upload")
 async def upload(file: bytes = File(...)) -> Upload:
     filename = uuid.uuid4().hex + '.mp4'
-    with open(f'./test/{filename}', 'wb') as f:
+    path = './test'
+    with open(f'{path}/{filename}', 'wb') as f:
         f.write(file)
-    return Upload(filename=filename)
+    return Upload(path=path, filename=filename)
 
 
+@app.post("/predict")
+async def predict(filename: str) -> Status:
+    path = './test'
+    name = f'{path}/{filename}'
+    out_name = f'{path}/res/{filename}'
+
+    os.system(f'python ./inference_realesrgan_video.py -i {name} -n realesr-animevideov3 -s 4 -o ./test/res') # --suffix {suffix}')
+
+    return Status(**{'percent': 100, 'path': path, 'filename': out_name})
+
+"""
 def predict_background(filename: str):
-    for i in range(100):
-        with open(f'./test/{filename}.json', 'wt') as f:
-            json.dump({'percent': i}, f)
-        time.sleep(1)
-    with open(f'./test/{filename}.json', 'wt') as f:
-        json.dump({'percent': 100, 'link': f'./test/{filename}'}, f)
+    path = './test'
+
+    name = f'{path}/{filename}'
+    # suffix = 'out'
+    # out_name = f'{path}/{filename}{suffix}'
+
+    out_name = f'{path}/res/{filename}'
+
+    # with open(f'{path}/{filename}.json', 'wt') as f:
+    #     json.dump({'percent': 0}, f)
+
+    os.system(f'python ./inference_realesrgan_video.py -i {name} -n realesr-animevideov3 -s 4 -o ./test/res') # --suffix {suffix}')
+    # with open(f'{path}/{filename}.json', 'wt') as f:
+    #     json.dump({'percent': 100, 'path': path, 'filename': out_name}, f)
+
+    # for i in range(100):
+    #     with open(f'{path}/{filename}.json', 'wt') as f:
+    #         json.dump({'percent': i}, f)
+    #     time.sleep(1)
+    # with open(f'{path}/{filename}.json', 'wt') as f:
+    #     json.dump({'percent': 100, 'path': path, 'filename': filename}, f)
 
 
 @app.post("/predict")
@@ -60,6 +90,8 @@ async def predict(filename: str, background_tasks: BackgroundTasks) -> Status:
 
 @app.get("/status")
 async def status(filename: str) -> Status:
-    with open(f'./test/{filename}.json') as f:
+    path = './test'
+    with open(f'{path}/{filename}.json') as f:
         st = Status(**(json.load(f)))
     return st
+"""

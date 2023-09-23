@@ -23,6 +23,7 @@ make run
 make up
 ```
 
+Сервис будет доступен по адресу [http://localhost:8001/](http://localhost:8001/)
 
 ## Остановка
 ```commandline

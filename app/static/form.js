@@ -16,9 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelector('.tabs');
     const allTab = document.querySelectorAll('.tab');
     const genericFileName = document.getElementById('genericFileName');
-    // console.log(genericFileName);
-    const popup = document.getElementById("popup");
-    console.log(popup);
+    console.log(genericFileName);
 
     // Отправлка текста на сервер
     // form1.addEventListener('submit', async function(event) {
@@ -169,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData
                 // body: file.files[0]
             });
-            showPopup();
 
             if (response.ok) {
                 console.log('response получен');
@@ -180,16 +177,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <source id="genericFileName" src="./test/${data.filename}">
                 Ваш браузер не поддерживает видео.
               </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50">Улучшить качество</button>` ;
-              setTimeout(() => {
-                console.log("закрываем попап");
-                hidePopup();
-              }, "1000");
+           
             // document.getElementById('genericFileName').src = `./test/${data.filename}`;
             
                 outputDiv.classList.remove('invisible');
             } else {
                 output.textContent = 'Ошибка при загрузке файла.';
-                hidePopup();
             }
         } catch (error) {
             console.error('Произошла ошибка:', error);
@@ -199,15 +192,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
    
+    // Переключение табов
+//     tabs.addEventListener('click', (e) => {
+      
+//         e.preventDefault();
+//         form1.reset();
+//         form2.reset();
+//         fileName.textContent = '';
+//         console.log(e.target);
+//         allTab.forEach(el => {
+//             el.classList.toggle('tab_active');
+//         })
+//         document.querySelectorAll('form').forEach(el => {
+//             el.classList.toggle('hidden');
+//         });
 
+//    });
 });
-
-// Функция для отображения всплывающего окна
-function showPopup() {
-  popup.style.display = "block";
-}
-
-// Функция для скрытия всплывающего окна
-function hidePopup() {
-  popup.style.display = "none";
-}
