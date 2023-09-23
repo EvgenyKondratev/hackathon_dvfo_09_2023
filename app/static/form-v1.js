@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json();
                 form2.reset(); // Сбрасываем форму
                 console.log(data);
-                outputLeft.innerHTML = `<h2>Загруженное видео</h2><br> <video width="320"  controls>
+                outputLeft.innerHTML = `<h2>Загруженное видео</h2><br> <video width="420"  controls>
                 <source id="genericFileName" src="./test/${data.filename}">
                 Ваш браузер не поддерживает видео.
               </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Улучшить качество</button>` ;
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             // console.log(typeof data.filename);
                          
 
-                            outputRight.innerHTML = `<h2>Улучшенное видео</h2><br> <video width="320"  controls>
+                            outputRight.innerHTML = `<h2>Улучшенное видео</h2><br> <video width="420"  controls >
                             <source id="genericFileName" src="${data.filename}">
                             Ваш браузер не поддерживает видео.
                           </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Мне понравилось! :)</button>` ;
