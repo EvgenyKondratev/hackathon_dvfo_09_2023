@@ -76,13 +76,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     try {
                         console.log('post-запрос №2');
                         console.log(data.filename);
-
+                        showPopup();
                         // let finalName = data.filename.split('');
                         // console.log('появился массив', finalName);
                         // let arr2 = finalName.slice(0, -8);
                         // let str = arr2.join('');
                         // str += '.mp4';
                         // console.log(typeof str, str);
+                       
 
                         const response = await fetch(`/predict?filename=${data.filename}`, {
                             method: 'POST'
@@ -101,10 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             <source id="genericFileName" src="${data.filename}">
                             Ваш браузер не поддерживает видео.
                           </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Мне понравилось! :)</button>` ;
-                          setTimeout(() => {
+                      
                             console.log("закрываем попап");
                             hidePopup(); 
-                          }, "1000");
+                        
                         }
                      }
                      catch (error) {
