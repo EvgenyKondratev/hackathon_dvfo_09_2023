@@ -8,10 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileChooseButton = document.getElementById('file-choose-button');
     const fileSendButton = document.getElementById('file-send-button');
     const outputDiv = document.getElementById('output');
+    const outputLeft = document.querySelector('.output-left');
+    const outputRight = document.querySelector('.output-right');
+
     const table = document.querySelector('.table');
     const fileName = document.getElementById('fileName');
     const tabs = document.querySelector('.tabs');
     const allTab = document.querySelectorAll('.tab');
+    const genericFileName = document.getElementById('genericFileName');
+    console.log(genericFileName);
 
     // Отправлка текста на сервер
     // form1.addEventListener('submit', async function(event) {
@@ -146,23 +151,38 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         fileName.textContent = '';
         // console.log('sending';
-        const formData = new FormData(form2);
-        // console.log(formData);
-        console.log(file.files[0]);
+        let formData = new FormData(form2);
+        console.log(formData);
+        console.log('----');
+        formData.append('file', file.files[0]);
+        console.log(formData);
+       
+        // console.log(file.files[0]);
         try {
             const response = await fetch("/upload", {
                 method: 'POST',
+                headers: {
+                    "enctype": "multipart/form-data"
+                },                
                 body: formData
+                // body: file.files[0]
             });
 
             if (response.ok) {
                 console.log('response получен');
                 const data = await response.json();
                 form2.reset(); // Сбрасываем форму
-    
+                console.log(data);
+                outputLeft.innerHTML = `<h2>Загруженное видео</h2><br> <video width="320"  controls>
+                <source id="genericFileName" src="./test/${data.filename}">
+                Ваш браузер не поддерживает видео.
+              </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50">Улучшить качество</button>` ;
+           
+            // document.getElementById('genericFileName').src = `./test/${data.filename}`;
+            
+                outputDiv.classList.remove('invisible');
             } else {
-                // outputDiv.textContent = 'Ошибка при загрузке файла.';
-                console.log('else на 163 строчке');
+                output.textContent = 'Ошибка при загрузке файла.';
             }
         } catch (error) {
             console.error('Произошла ошибка:', error);

@@ -22,6 +22,8 @@ class Status(BaseModel):
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/test", StaticFiles(directory="test"), name="test")
+
 logger.add('out.log', format="{time} {level} {message}", level="DEBUG")
 
 

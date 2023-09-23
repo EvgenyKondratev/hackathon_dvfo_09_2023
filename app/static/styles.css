@@ -28,13 +28,14 @@ P{
 
 .main{
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    /* background-image:  url("./img/people.jpg"); */
+    background-image:  url("./img/right.svg");
     background-color: black;
     background-position: top right;
     background-size: contain;
     background-repeat: no-repeat;
-    /* background-size: 100%; */
+    background-size: 40%;
     position: relative;
 }
 .main::before {
@@ -88,7 +89,7 @@ P{
 }
 .case{
     /* margin-left: 100px; */
-    width: 80%;
+    width: 70%;
     min-width: 600px;
 
 }
@@ -151,18 +152,32 @@ P{
 
 #output{
     /* margin-left: 150px; */
-    padding-top: 30px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: start;
+    align-items: center;
+   
     background: rgb(255, 255, 255);
-    max-width: 80%;
+    width: 80%;
     margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
     border-radius: 20px;
-    /* min-height: 300px; */
+    min-height: 300px;
+    z-index: 10;
     
 }
 #output h2{
-    color: black;
+    color: black !important;
 }
-
+.output-left{
+    /* background: rgb(189, 228, 189); */
+    padding: 30px;
+    padding-left: 100px;
+}
+.output-right{
+    background: blue;
+}
 .mt50{
 margin-top: 50px;
 }
