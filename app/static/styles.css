@@ -1,1 +1,385 @@
-﻿
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+.body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(10, 0, 34);
+    background-image: url("./img/bg.png");
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2{
+    color: white;
+    font-size: 30px;
+}
+h3{
+    color: white;
+    font-size: 22px;
+}
+
+P{
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.main{
+    display: flex;
+    min-height: 100vh;
+    background-image:  url("./img/parking.jpg");
+    background-color: black;
+    background-position: top right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+}
+.main::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5); /* Здесь можно установить цвет overlay и его прозрачность */
+    background: linear-gradient(to right, rgb(9, 0, 41), rgba(0, 0, 0, 0)); /* Градиент от черного к прозрачному */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Установите z-index по вашему усмотрению, чтобы контент оставался выше overlay */
+  }
+.left{
+    width: 75%;
+    padding-top: 30px;
+    padding-left: 100px;
+    min-width: 500px;
+    z-index: 2;
+}
+.form {
+    background-color: #b1b1b143;
+    padding: 30px;
+    border-radius: 10px;
+    /* color: black; */
+    width: 50%;
+    min-width: 600px;
+ 
+}
+.form .form-check-label {
+    color: white;
+}
+.inline{
+    display: inline;
+}
+.form-label{
+    color: white;
+}
+
+.hidden{
+    display: none;
+    visibility: none; 
+    padding: 0; 
+    margin: 0;
+}
+#fileName{
+    font-size: 18px;
+    color: #ffffff;
+    margin-left: 10px;
+}
+.case{
+    /* margin-left: 100px; */
+    width: 80%;
+    min-width: 600px;
+
+}
+.right {
+    /* min-height: 600px; */
+    width: 25%;
+    flex-shrink: 5;
+    /* background: #000; */
+    /* background-image:  url("./img/map.png"); */
+    /* background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 100% ;
+    background-position: center; */
+
+}
+/* #bar-chart-horizontal{
+    margin: 0 auto;
+   
+    max-width: 1000px;
+    max-height: 500px;
+    background: rgba(255, 255, 255, 0);
+} */
+.tabs{
+  
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    /* background: rgb(255, 255, 255); */
+    /* width: 25%; */
+    font-size: 20px;
+}
+.tab{
+    display: inline;
+    cursor: pointer;
+    min-width: 50%;
+    padding: 0;
+    margin: 0;
+    margin-right: 50px;
+    text-align: center;
+    color: white;
+    
+    /* background: gray; */
+}
+.tab_active{
+    border-bottom: 1px solid #ffffff;
+    /* text-decoration: underline; */
+
+    
+
+   
+}
+
+.canvas_active{
+    margin: 0 auto;
+    max-width: 80%;
+    max-height: 500px;
+    background: rgb(255, 255, 255);
+}
+
+
+#output{
+    /* margin-left: 150px; */
+    padding-top: 30px;
+    background: rgb(255, 255, 255);
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    /* min-height: 300px; */
+    
+}
+#output h2{
+    color: black;
+}
+
+.mt50{
+margin-top: 50px;
+}
+
+.mb50{
+    margin-bottom: 50px;
+}
+
+.mt20{
+    margin-top: 20px;
+}
+
+.pb100{
+    padding-bottom: 100px;
+}
+
+
+/* ------------ header styles ---------- */
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #00000012;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 30px;
+    font-size: 22px;
+    font-weight: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+
+}
+.header__logo{
+    flex-basis: 100px;
+    font-weight: 800;
+    font-size: 30px;
+    margin-left: 70px;
+}
+.header__nav{
+    display: flex;
+    flex-grow: 2;
+    flex-basis: 500px;
+    justify-content: center;
+    gap: 25px;
+}
+.header__social{
+    margin-right: 70px;    
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-basis: 100px;
+    font-size: 30px;
+    color: #ffffff;
+}
+.header a {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+.header__nav a:hover {
+    color: white;
+    text-decoration: none;
+    border-bottom: 2px solid #ffffff;
+}
+.header__nav a:active {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-bottom: 2px solid #ffffff;
+}
+
+/* -------------- таблица -------------- */
+.invisible{
+    display: none;
+}
+.visible{
+    background: white;
+    /* height: 300px; */
+}
+.table{
+    margin: 0 auto;
+    padding: 70px;
+    border-radius: 10px;
+
+    margin-top: 30px;
+    width: 80%;
+    background: rgb(255, 255, 255);
+}
+.row{
+    height: 85px;
+    display:flex;
+    width: 100%;
+    /* background: pink; */
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid #e6e6e6; */
+}
+
+.col-l {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgb(54, 54, 54);
+    /* background: #9ef5fd; */
+    
+}
+.col-r{
+    align-content: start;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+    /* background: #63b07c; */
+    font-size: 28px;
+    font-weight: 800;
+    color: rgb(99, 99, 99);
+}
+.bar{
+    height: 5px;
+    background: rgb(27, 59, 147);
+    background: linear-gradient(90deg, rgb(27, 59, 147) 0%, rgba(255,255,255,1) 100%);
+    border-radius: 5px;
+    /* width: 90%; */
+}
+
+
+
+/* ---------------- responsive -------------- */
+@media all and (max-width: 1440px) { 
+    .form {
+            /* background-color: rgb(228, 64, 237); */
+            min-width: 500px;
+    }
+    .case{
+        min-width: 500px;
+
+    }
+  
+}
+@media all and (max-width: 1100px) { 
+    .form {
+            /* background-color: rgb(228, 64, 237); */
+            /* min-width: 500px;
+             */
+             width: 100%;
+    }
+    .case{
+        min-width: 500px;
+        width: 100%;
+    }
+    .main{
+        /* background-size: 45%; */
+        background-image: none;
+
+    }
+    /* .tabs{
+        display: flex;
+    } */
+    .col-r{
+        font-size: 23px;
+    }
+    .bar{
+        height: 2px;
+    }
+}
+@media all and (max-width: 800px) { 
+    .body{
+        padding: 10px;
+    }
+    h2{
+        font-size: 22px;
+    }
+    h4{
+        font-size: 18px;
+    }
+    .left{   width: 75%;
+        padding: 10px;
+       }
+ .right{
+    display: none;
+ }
+  .header{
+    padding: 10px;
+  }
+  .header__logo{
+    margin: 0;
+    font-size: 24px;
+  }
+  .header__social{
+margin: 0;
+  }
+ 
+  .header__nav{
+    display: none;
+  }
+  .tabs{
+    width: 50%;
+  }
+  .form{
+    min-width: 0;
+    width: 70%;
+    padding: 10px;
+  }
+  .table{
+    width: 85%;
+    margin: 10px;
+    padding: 10px;
+  }
+  .col-l{
+    font-size: 16px;
+  }
+  .col-r{
+    font-size: 16px;
+  }
+  .table-header{
+    height: 50px;
+  }
+  .header__social{
+justify-content: center;
+  }
+}
