@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             form2.reset(); // Сбрасываем форму
                             console.log(data);
                             outputLeft.innerHTML = `<h2>Загруженное видео</h2><br> <video width="320"  controls>
-                            <source id="genericFileName" src="./test/${data.filename}">
+                            <source id="genericFileName" src="${data.filename}">
                             Ваш браузер не поддерживает видео.
                           </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Улучшить качество</button>` ;
                           setTimeout(() => {

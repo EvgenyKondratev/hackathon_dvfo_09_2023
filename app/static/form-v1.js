@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         fileName.textContent = '';
         let formData = new FormData(form2);
-        console.log(formData);
-        console.log('----');
+        // console.log(formData);
+        // console.log('----');
         formData.append('file', file.files[0]);
-        console.log(formData);
+        // console.log(formData);
        
         try {
             const response = await fetch("/upload", {
@@ -76,25 +76,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     try {
                         console.log('post-запрос №2');
                         console.log(data.filename);
+
+                        // let finalName = data.filename.split('');
+                        // console.log('появился массив', finalName);
+                        // let arr2 = finalName.slice(0, -8);
+                        // let str = arr2.join('');
+                        // str += '.mp4';
+                        // console.log(typeof str, str);
+
                         const response = await fetch(`/predict?filename=${data.filename}`, {
                             method: 'POST'
-                        //     headers: {
-                        //         "enctype": "application/json"
-                        //     },                
-                        //     body: {
-                        //         "filename": '252be71ce77d41ecb1bcc86e914f9f54.mp4'
-                        //    }
+                   
                     });
                         // showPopup();
                         if (response.ok) {
                             console.log('response 2 получен');
                             const data = await response.json();
-                            // form2.reset(); // Сбрасываем форму
-                            console.log('data2 = ', data.filename);
+                            
+                            console.log('data.filename из data2 = ', data.filename);
+                            // console.log(typeof data.filename);
+                         
+
                             outputRight.innerHTML = `<h2>Улучшенное видео</h2><br> <video width="320"  controls>
-                            <source id="genericFileName" src="./test/${data.filename}">
+                            <source id="genericFileName" src="${data.filename}">
                             Ваш браузер не поддерживает видео.
-                          </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Улучшить качество</button>` ;
+                          </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Мне понравилось! :)</button>` ;
                           setTimeout(() => {
                             console.log("закрываем попап");
                             hidePopup(); 
