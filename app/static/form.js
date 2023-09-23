@@ -2,7 +2,6 @@ console.log('hi from form.js');
 
 document.addEventListener('DOMContentLoaded', function() {
     let body = document.querySelector('.body');
-    const form1 = document.getElementById('upload-form');
     const form2 = document.getElementById('upload-file');
     const file = document.getElementById('fileToUpload');
     const fileChooseButton = document.getElementById('file-choose-button');
@@ -10,13 +9,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const outputDiv = document.getElementById('output');
     const outputLeft = document.querySelector('.output-left');
     const outputRight = document.querySelector('.output-right');
-
     const table = document.querySelector('.table');
     const fileName = document.getElementById('fileName');
     const tabs = document.querySelector('.tabs');
     const allTab = document.querySelectorAll('.tab');
     const genericFileName = document.getElementById('genericFileName');
-    console.log(genericFileName);
+    // console.log(genericFileName);
+    const popup = document.getElementById("popup");
+    console.log(popup);
 
     // Отправлка текста на сервер
     // form1.addEventListener('submit', async function(event) {
@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
     fileChooseButton.addEventListener('click', (e) => {
         e.preventDefault();
         document.getElementById('fileToUpload').click();
-        console.log('click');
     });
     // Отображение имени файла
     form2.addEventListener('change', e => {
@@ -165,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     "enctype": "multipart/form-data"
                 },                
                 body: formData
-                // body: file.files[0]
+               
             });
 
             if (response.ok) {
@@ -177,10 +176,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 <source id="genericFileName" src="./test/${data.filename}">
                 Ваш браузер не поддерживает видео.
               </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50">Улучшить качество</button>` ;
-           
+              setTimeout(() => {
+                console.log("закрываем попап");
+                hidePopup();
+              }, "1000");
             // document.getElementById('genericFileName').src = `./test/${data.filename}`;
             
                 outputDiv.classList.remove('invisible');
+                const enhance = document.querySelector('.enhance');
+                console.log(enhance);
+
+
+                // пробуем второй запрос
+                enhance.addEventListener('click', async function(event){
+                    event.preventDefault();
+                    try {
+                        console.log('post-запрос №2');
+                        console.log(data.filename);
+                        const response = await fetch(`/predict?filename=${data.filename}`, {
+                            method: 'POST'
+                        //     headers: {
+                        //         "enctype": "application/json"
+                        //     },                
+                        //     body: {
+                        //         "filename": '252be71ce77d41ecb1bcc86e914f9f54.mp4'
+                        //    }
+                    });
+                        // showPopup();
+                        if (response.ok) {
+                            console.log('response 2 получен');
+                            const data = await response.json();
+                            form2.reset(); // Сбрасываем форму
+                            console.log(data);
+                            outputLeft.innerHTML = `<h2>Загруженное видео</h2><br> <video width="320"  controls>
+                            <source id="genericFileName" src="./test/${data.filename}">
+                            Ваш браузер не поддерживает видео.
+                          </video>  <br>   <button type = "submit" class="btn btn-success btn-lg mt-3 mb50 enhance">Улучшить качество</button>` ;
+                          setTimeout(() => {
+                            console.log("закрываем попап");
+                            hidePopup(); 
+                          }, "1000");
+                        }
+                     }
+                     catch (error) {
+                        console.error('Произошла ошибка:', error);
+                        outputDiv.textContent = 'Произошла ошибка при выполнении запроса 2';
+                    }
+                });
+                     
             } else {
                 output.textContent = 'Ошибка при загрузке файла.';
             }
@@ -209,3 +252,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //    });
 });
+
+
