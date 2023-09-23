@@ -13,11 +13,11 @@
 }
 
 h2{
-    color: white;
+    color: white !important;
     font-size: 30px;
 }
 h3{
-    color: white;
+    color: white !important;
     font-size: 22px;
 }
 
@@ -29,12 +29,12 @@ P{
 .main{
     display: flex;
     min-height: 100vh;
-    background-image:  url("./img/parking.jpg");
+    /* background-image:  url("./img/people.jpg"); */
     background-color: black;
     background-position: top right;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-size: 100%;
+    /* background-size: 100%; */
     position: relative;
 }
 .main::before {
@@ -195,9 +195,9 @@ margin-top: 50px;
 
 }
 .header__logo{
-    flex-basis: 100px;
+    flex-basis: 230px;
     font-weight: 800;
-    font-size: 30px;
+    font-size: 28px;
     margin-left: 70px;
 }
 .header__nav{
