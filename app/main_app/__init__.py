@@ -51,9 +51,11 @@ async def upload(file: bytes = File(...)) -> Upload:
 async def predict(filename: str) -> Status:
     path = './test'
     name = f'{path}/{filename}'
-    out_name = f'{path}/res/{filename}'
+    suffix = 'out'
+    fn, ext = os.path.splitext(filename)
+    out_name = f'{path}/res/{fn}_{suffix}{ext}'
 
-    os.system(f'python ./inference_realesrgan_video.py -i {name} -n realesr-animevideov3 -s 4 -o ./test/res') # --suffix {suffix}')
+    os.system(f'python ./inference_realesrgan_video.py -i {name} -n realesr-animevideov3 -s 4 -o ./test/res --suffix {suffix}')
 
     return Status(**{'percent': 100, 'path': path, 'filename': out_name})
 
