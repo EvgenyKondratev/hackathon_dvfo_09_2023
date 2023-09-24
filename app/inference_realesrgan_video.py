@@ -291,8 +291,8 @@ def run(args):
     print(f'num_gpus = {num_gpus}')
     num_process = num_gpus * args.num_process_per_gpu
     print(f'num_process = {num_process}')
-    if num_process == 0:
-        num_process = 1
+    # if num_process == 0:
+    #     num_process = 1
     if num_process == 1:
         inference_video(args, video_save_path)
         return
